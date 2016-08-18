@@ -8,5 +8,5 @@ Seeds and some fake data is included. )
 * Admin account login: 'admin@test.ru', pass: 'longpass'
 
 #TODO
-  Notifications when assignee and task status is changed
-  User notifications when created or updated by admin
+  * Notifications when assignee and task status is changed
+  * User notifications when created or updated by admin
