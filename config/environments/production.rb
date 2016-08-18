@@ -60,7 +60,7 @@ Rails.application.configure do
     authentication:        :plain
   }
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: 'http://enigmatic-mountain-84656.herokuapp.com', port: '3000' }
+  config.action_mailer.default_url_options = { host: 'http://enigmatic-mountain-84656.herokuapp.com', port: '5000' }
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
