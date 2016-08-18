@@ -4,8 +4,8 @@
 
 You can see a working app at http://enigmatic-mountain-84656.herokuapp.com/ 
 Seeds and some fake data is included. )
-* User account: login:  'user@test.ru', pass: 'longpass'
-* Admin account login: 'admin@test.ru', pass: 'longpass'
+* User account: login:  'test@user.ru', pass: 'longpass'
+* Admin account login: 'test@tadmin.ru', pass: 'longpass'
 
 #TODO
   * Notifications when assignee and task status is changed
