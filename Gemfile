@@ -45,7 +45,8 @@ gem 'aasm'
 gem 'email_validator'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'breadcrumbs_on_rails', git: 'git://github.com/weppos/breadcrumbs_on_rails.git', branch: 'master' # Change this when bug is fixed
-
+gem 'factory_girl_rails'
+gem 'faker'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -61,12 +62,10 @@ group :development do
 end
 group :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-selenium'
   gem 'headless'
   gem 'database_cleaner'
-  gem 'faker'
   gem 'capybara-email'
   gem 'shoulda'
   gem 'shoulda-matchers'
