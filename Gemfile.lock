@@ -1,6 +1,23 @@
+GIT
+  remote: git://github.com/borzoni/growlyflash.git
+  revision: 9b125814d168ec3c6005b404214203a1ecc4579e
+  branch: master
+  specs:
+    growlyflash (0.9.0)
+      coffee-rails (>= 3.2.1)
+      railties (>= 3.2, < 5.1)
+
+GIT
+  remote: git://github.com/weppos/breadcrumbs_on_rails.git
+  revision: 8d3ef09135d6673788c477120702076cd28670ab
+  branch: master
+  specs:
+    breadcrumbs_on_rails (3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (4.11.0)
     actioncable (5.0.0)
       actionpack (= 5.0.0)
       nio4r (~> 1.2)
@@ -42,6 +59,7 @@ GEM
     arel (7.1.1)
     autoprefixer-rails (6.4.0.1)
       execjs
+    bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -54,6 +72,20 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-email (2.5.0)
+      capybara (~> 2.4)
+      mail
+    capybara-selenium (0.0.6)
+      capybara
+      selenium-webdriver
+    carrierwave (0.11.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+      mimemagic (>= 0.3.0)
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -62,9 +94,14 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    data-confirm-modal (1.2.0)
+      railties (>= 3.0)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
+    docile (1.1.5)
+    email_validator (1.6.0)
+      activemodel
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -79,6 +116,7 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    headless (2.2.3)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -87,6 +125,7 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    json (2.0.2)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -98,16 +137,25 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mimemagic (0.3.2)
+    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
+    nested_form_fields (0.7.8)
+      coffee-rails (>= 3.2.1)
+      jquery-rails
+      rails (>= 3.2.0)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     pg (0.18.4)
     pkg-config (1.1.7)
+    power_assert (0.2.6)
     puma (3.6.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -123,11 +171,18 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.0)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.0)
+      actionpack (~> 5.x)
+      actionview (~> 5.x)
+      activesupport (~> 5.x)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6.0)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-i18n (5.0.0)
+      i18n (~> 0.7)
+      railties (~> 5.0)
     railties (5.0.0)
       actionpack (= 5.0.0)
       activesupport (= 5.0.0)
@@ -155,6 +210,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    rubyzip (1.2.0)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -162,11 +218,21 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    selenium-webdriver (2.53.4)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
+    shoulda (2.11.3)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
+    simplecov (0.12.0)
+      docile (~> 1.1.0)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     slim (3.0.7)
       temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
@@ -186,6 +252,8 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     temple (0.7.7)
+    test-unit (3.1.5)
+      power_assert
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
@@ -201,6 +269,7 @@ GEM
       activemodel (>= 5.0)
       debug_inspector
       railties (>= 5.0)
+    websocket (1.2.3)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -214,27 +283,45 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
+  bcrypt (~> 3.1.7)
   bootstrap-sass
+  breadcrumbs_on_rails!
   byebug
   capybara
+  capybara-email
+  capybara-selenium
+  carrierwave
   coffee-rails (~> 4.2)
+  data-confirm-modal
   database_cleaner
+  email_validator
   factory_girl_rails
   faker
   font-awesome-rails
+  growlyflash!
+  headless
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  mini_magick
+  nested_form_fields
   pg (~> 0.18)
   puma (~> 3.0)
+  pundit
   rails (~> 5.0.0)
+  rails-controller-testing
+  rails-i18n (~> 5.0.0)
   rspec-rails
   sass-rails (~> 5.0)
+  shoulda
   shoulda-matchers
   simple_form
+  simplecov
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)
+  test-unit
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)

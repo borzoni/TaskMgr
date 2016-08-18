@@ -1,5 +1,4 @@
 RSpec.configure do |config|
-
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.cleaning do
@@ -11,7 +10,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.before(:each, :js => true) do
+  config.before(:each, js: true) do
     DatabaseCleaner.strategy = :truncation
   end
 
@@ -23,7 +22,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
     FileUtils.rm_rf(Rails.configuration.attachments_dir)
   end
-  
+
   config.before(:all) do
     DeferredGarbageCollection.start
   end

@@ -1,6 +1,11 @@
-class Task < ActiveRecord::Base
+class Task < ApplicationRecord
   include AASM
+  include TaskRepository
+
   belongs_to :user
+  validates :user_id, :name, presence: true
+  has_many :attachments, dependent: :destroy
+  accepts_nested_attributes_for :attachments, reject_if: :reject_attachments?, allow_destroy: true
 
   delegate :email, to: :user
 
@@ -17,7 +22,15 @@ class Task < ActiveRecord::Base
     end
 
     event :reopen do
-      transitions from: %i(started finished), to: :new
+      transitions from: [:started, :finished], to: :new
     end
+  end
+
+  def reject_attachments?(attrs)
+    attrs.slice(:id, :attach_file, :attach_file_cache).values.all?(&:blank?)
+  end
+
+  def build_attachments
+    attachments.build if attachments.reject(&:marked_for_destruction?).blank?
   end
 end

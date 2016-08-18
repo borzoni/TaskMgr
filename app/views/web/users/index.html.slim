@@ -1,0 +1,44 @@
+- content_for(:sidebar) do
+  = render 'sidebar'
+section.content
+  .box.box-primary  
+    .box-header.with-border
+      h3.box-title
+        | Users
+      = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-plus' }) + " #{User.model_name.human}", new_user_path, { class: 'btn btn-primary pull-right', data: {toggle: 'tooltip', placement: 'bottom' }, title: I18n.t('crumbs.new_item')}
+    - if @users.present?
+      .box-body
+        table.table.table-striped
+          thead
+            tr
+              th
+                = User.human_attribute_name('id')
+              th
+                = User.human_attribute_name('email')
+              th
+                = User.human_attribute_name('role')
+              th
+                = User.human_attribute_name('created_at')
+              th
+          tbody
+           - @users.each do |user|
+              tr id= "user-#{user.id}"
+                td
+                  = user.id
+                td
+                  = user.email
+                td
+                  = user.role  
+                td
+                  = user.created_at
+                td
+                  = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-eye-open' }), user_path(user), { class: 'btn btn-sm btn-info' }
+                  = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-edit' }), edit_user_path(user), { class: 'btn btn-sm btn-warning' }
+                  = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-remove-sign' }), user_path(user.id), { class: 'btn btn-sm btn-danger', method: :delete, data: {confirm: "Are you sure?"}, name: 'delete' }
+      .box-footer.clearfix
+        .pagination.pagination-sm.no-margin.pull-right
+          = will_paginate @users, renderer: BootstrapPagination::Rails
+    - else
+      .no-items-container
+        | No entries
+

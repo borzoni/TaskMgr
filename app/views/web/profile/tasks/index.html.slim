@@ -1,0 +1,34 @@
+- content_for(:sidebar) do
+  = render 'sidebar'
+section.content
+  .box.box-primary  
+    .box-header.with-border
+      h3.box-title
+        | Tasks
+      = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-plus' }) + " #{Task.model_name.human}", new_task_path, { class: 'btn btn-primary pull-right', data: {toggle: 'tooltip', placement: 'bottom' }, title: I18n.t('crumbs.new_item')}
+    - if @tasks.present?
+      .box-body
+        table.table.table-striped
+          thead
+            tr
+              th
+                = Task.human_attribute_name('id')
+              th
+                = Task.human_attribute_name('name')
+              th
+                = Task.human_attribute_name('description')
+              th
+                = Task.human_attribute_name('created_at')
+              - if current_user.admin?
+                th
+                  = Task.human_attribute_name('email')
+                th
+                th   
+          tbody
+            =render @tasks
+        nav.with-pagination
+          = will_paginate @tasks, renderer: BootstrapPagination::Rails
+    - else
+      .no-items-container
+        | No Entries
+

@@ -1,0 +1,24 @@
+.box-body
+  .col-md-6.col-md-offset-3
+    = simple_form_for  @task do |f|
+      = f.input :name
+      = f.input :description
+      - if current_user.admin?
+        = f.association :user, collection: @users, label_method: :email, value_method: :id, label: Task.human_attribute_name(:email), prompt: "Select user", input_html: { class: 'select-menu' }
+      = f.nested_fields_for :attachments do |a|
+        fieldset
+          legend
+            = Attachment.model_name.human
+            = a.remove_nested_fields_link '&otimes;'.html_safe, { class: 'remove-steps pull-right' }
+          - unless a.object.new_record?
+            div
+              = a.object&.attach_file&.file&.filename
+              = number_to_human_size(a.object&.attach_file&.file&.size&.to_f)
+          = a.input :attach_file
+          = a.hidden_field :attach_file_cache
+      .form-group
+        = f.add_nested_fields_link :attachments, "Add attachment", { class: 'btn btn-default btn-xs pull-right' }
+        .clearfix
+      .row
+        .col-xs-4
+          = f.button :submit, class:  'btn btn-primary btn-block btn-flat pull-left', name: 'save'

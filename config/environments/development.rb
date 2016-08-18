@@ -24,12 +24,17 @@ Rails.application.configure do
     config.action_controller.perform_caching = false
 
     config.cache_store = :null_store
+    config.attachments_dir = Rails.root.join('public/uploads')
   end
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :test
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.action_mailer.preview_path = 'spec/mailers/previews'
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

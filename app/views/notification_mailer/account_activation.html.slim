@@ -1,0 +1,11 @@
+p
+  b Valucon TaskMgr Notification System
+p
+  | Hi,
+p
+  | You have registred in Valucon TaskMgr
+p  
+  | Use the following link to activate your account :
+div
+  = link_to "Activate", edit_account_activation_url(id: @user.activation_token.secret_id, secret: @user.activation_token.secret, email: @user.email), id: "activation_link"
+

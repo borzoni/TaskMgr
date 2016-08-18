@@ -1,0 +1,25 @@
+aside.main-sidebar
+  section.sidebar
+    .user-panel
+      .pull-left.image
+        = image_tag("img/user2-160x160.jpg", :class => "img-circle", :alt =>"User Image")
+      .pull-left.info
+        p = current_user&.email
+        a href="#" 
+          i.fa.fa-circle.text-success
+          | Online
+    = form_tag profile_tasks_path, {class: 'sidebar-form', method: :get } do
+      div#params-for-submit
+        = hidden_field_tag :assignee_id, params[:assignee_id]
+      .input-group
+        = search_field_tag :query, params[:query], {class: 'form-control', placeholder: 'Search by text, name'}
+        span.input-group-btn
+          button#search-btn.btn name="search" type="submit" 
+            i.fa.fa-search 
+    - if current_user.admin? && @users.present?
+      .form-group
+        .col-xs-12
+            = select_tag :assignee_id_select, options_from_collection_for_select(@users, :id, :email, { selected: params[:assignee_id] }), prompt: "Search by assignee", class: 'form-control btn assignee-filter' 
+    .clearfix        
+    .reset-link
+      = link_to "Reset filters", profile_tasks_path, class: "btn"       

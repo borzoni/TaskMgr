@@ -1,0 +1,50 @@
+tr id= "task-#{task.id}" 
+  td.col-xs-1
+    = task.id
+  td.col-xs-2
+    = task.name
+  td.col-xs-4
+    = task.description
+  td.col-xs-1
+    = task.created_at
+  - if current_user.admin?
+    td
+      = task.email
+    
+  -if policy(task).edit?  
+    td.col-xs-2
+      .btn-group.status_control.col-xs-12
+        - if task.state.eql?('new')
+          - btn_class = 'btn-success'
+        - elsif task.state.eql?('started')
+          - btn_class = 'btn-warning'
+        - elsif task.state.eql?('finished')
+          - btn_class = 'btn-danger'
+        button.btn.btn-block.btn-sm.dropdown-toggle type= 'button' data= { toggle: 'dropdown' }  class= "#{btn_class}"
+          - if task.state.eql?('new')
+            .pull-left
+              span.glyphicon.glyphicon-off   New
+          - elsif task.state.eql?('started')  
+            .pull-left
+              span.glyphicon.glyphicon-play  Started 
+          - elsif task.state.eql?('finished') 
+            .pull-left
+              span.glyphicon.glyphicon-ok-sign  Finished
+          span.glyphicon.glyphicon-chevron-down.pull-right
+        ul.dropdown-menu
+          -if task.may_start? 
+            li
+              = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-play' }) +  "Start", start_task_path(task), method: :put, remote: true, name: 'start' 
+          -if task.may_finish?
+            li
+              = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-ok-sign' }) + " Finish", finish_task_path(task), method: :put, remote: true , name: 'finish' 
+          -if task.may_reopen?
+            li
+              =link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-repeat' }) + " Reopen", reopen_task_path(task),  method: :put, remote: true, name: 'reopen'  
+  td.col-xs-2 
+    -if policy(task).show?
+      = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-eye-open' }), task_path(task), { class: 'btn btn-sm btn-info' }
+    -if policy(task).update?
+      = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-edit' }), edit_task_path(task), { class: 'btn btn-sm btn-warning' }
+    -if policy(task).destroy?  
+      = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-remove-sign' }), task_path(task.id), { class: 'btn btn-sm btn-danger', method: :delete, data: {confirm: "Are you sure?"} , name: "delete"}

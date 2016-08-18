@@ -1,0 +1,39 @@
+.row
+  .col-xs-offset-2.col-xs-8
+    section.content-header
+    section.content
+      .box.box-primary  
+        .box-header.with-border
+          h3.box-title
+            | Tasks
+          - if @tasks.present?
+            .box-body
+              table.table.table-striped
+                thead
+                  tr
+                    th
+                      = Task.human_attribute_name('id')
+                    th
+                      = Task.human_attribute_name('name')
+                    th
+                      = Task.human_attribute_name('created_at')
+                    th
+                      = Task.human_attribute_name('email')
+                tbody
+                  -@tasks.each do |task|
+                   tr
+                      td
+                        = task.id
+                      td
+                        = task.name
+                      td
+                        = task.created_at
+                      td
+                        = task.email    
+
+              nav.with-pagination
+                = will_paginate @tasks, renderer: BootstrapPagination::Rails
+          - else
+            .no-items-container
+              | No Entries
+

@@ -1,0 +1,40 @@
+.row
+  .col-xs-offset-2.col-xs-8
+    section.content
+      .box.box-primary  
+        .box-header.with-border
+          h3.box-title
+            = @user.email
+          - if policy(@user).update?
+            = link_to content_tag(:span, nil, {class: 'glyphicon glyphicon-edit' }), edit_user_path(@user), {class: 'btn btn-primary pull-right' }
+          - if policy(@user).create? 
+            = link_to content_tag(:span, nil, {class: 'glyphicon glyphicon-plus' }), new_user_path, {class: 'btn btn-primary pull-right' }
+          - if policy(@user).index?  
+            = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-arrow-left' }), users_path, { class: 'btn btn-primary pull-right' } 
+        .box-body
+          .h3.profile-username.text-center = "Info for #{@user.email}"
+          .col-md-6.col-md-offset-2
+            ul.list-group.list-group-unbordered
+              li.list-group-item
+                b = "#{User.human_attribute_name(:id)} :"
+                p.pull-right = @user.id
+              li.list-group-item
+                b = "#{User.human_attribute_name(:email)} :"
+                p.pull-right = @user.email
+              li.list-group-item
+                b = "#{User.human_attribute_name(:created)} :"
+                p.pull-right = @user.created_at
+            - if @user.tasks.present?
+                h4
+                  = "User has #{@user.tasks.count} tasks :"
+                table.table.table-striped.tasks
+                  thead
+                    tr
+                      th= Task.human_attribute_name('id')
+                      th= Task.human_attribute_name('name')
+                  tbody
+                    - @user.tasks.each do |task|
+                      tr
+                        td= task.id
+                        td= link_to task.name, task
+        .box-footer       

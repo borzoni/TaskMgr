@@ -1,0 +1,16 @@
+.login-box
+  .login-logo
+    b> Task
+    | MGR
+  /! /.login-logo
+  .login-box-body
+    p.login-box-msg Enter you Email to reset password
+    = form_for(@user, url: password_resets_path) do |f|
+      = error_aware_field(@user, :email) do 
+        = f.email_field :email, { class: 'form-control', required: true, placeholeder: 'Email' }
+        span.glyphicon.glyphicon-envelope.form-control-feedback
+      .row
+        .col-xs-8
+        .col-xs-4
+          = f.submit 'Reset', class: 'btn btn-primary btn-block btn-flat pull-right'  
+        

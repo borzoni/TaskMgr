@@ -1,9 +1,9 @@
-class User < ActiveRecord::Base
-  has_many :tasks, dependent: :destroy
-  after_initialize :set_default_role, :if => :new_record?
-  enum role: [:user, :admin]
+class User < ApplicationRecord
+  include Authenticatable
+  include UserRepository
 
-	def set_default_role
-		self.role ||= :user
-	end
-end  
+  before_save { self.email = email.downcase }
+  validates :email, uniqueness: true, presence: true, email: true
+  has_many :tasks, dependent: :destroy
+  enum role: [:user, :admin]
+end

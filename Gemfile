@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use postgresql as the database for Active Record
@@ -25,10 +24,16 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+gem 'growlyflash', git: 'git://github.com/borzoni/growlyflash.git', branch: 'master'
+gem 'data-confirm-modal'
+gem 'nested_form_fields'
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'pundit'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :developmentgem 'slim-rails'
+# gem 'capistrano-rails', group: :development
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'simple_form'
@@ -36,8 +41,9 @@ gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'aasm'
-
-
+gem 'email_validator'
+gem 'rails-i18n', '~> 5.0.0'
+gem 'breadcrumbs_on_rails', git: 'git://github.com/weppos/breadcrumbs_on_rails.git', branch: 'master' # Change this when bug is fixed
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -56,9 +62,16 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'capybara-selenium'
+  gem 'headless'
   gem 'database_cleaner'
   gem 'faker'
+  gem 'capybara-email'
+  gem 'shoulda'
   gem 'shoulda-matchers'
+  gem 'test-unit'
+  gem 'rails-controller-testing'
+  gem 'simplecov', require: false
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

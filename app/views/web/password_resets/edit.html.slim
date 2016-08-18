@@ -1,0 +1,19 @@
+.login-box
+  .login-logo
+    b> Task
+    | MGR
+  /! /.login-logo
+  .login-box-body
+    p.login-box-msg Enter a new password
+    = form_for(@user, url: password_reset_path(id: params[:id], secret: params[:secret])) do |f|
+     = hidden_field_tag :email, @user.email
+     = error_aware_field(@user, :password) do 
+        = f.password_field :password, { class: 'form-control', required: true, placeholeder: 'Password' }
+        span.glyphicon.glyphicon-lock.form-control-feedback
+     = error_aware_field(@user, :password_confirmation) do 
+        = f.password_field :password_confirmation, { class: 'form-control', required: true, placeholeder: 'Retype Password' }
+        span.glyphicon.glyphicon-log-in.form-control-feedback
+     .row
+       .col-xs-8
+       .col-xs-4
+         = f.submit 'Submit', class: 'btn btn-primary btn-block btn-flat pull-right'  

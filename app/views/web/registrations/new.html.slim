@@ -1,0 +1,22 @@
+.register-box
+  .register-logo
+    b> Task
+    | MGR
+  .register-box-body
+    p.login-box-msg Register a new membership
+    = form_for(@user, url: registrations_path) do |f|
+      = error_aware_field(@user, :email) do
+        = f.email_field :email, { class: 'form-control', required: true, placeholeder: 'Email' }
+        span.glyphicon.glyphicon-envelope.form-control-feedback
+      = error_aware_field(@user, :password) do
+        = f.password_field :password, { class: 'form-control', required: true, placeholeder: 'Password' }
+        span.glyphicon.glyphicon-lock.form-control-feedback
+      = error_aware_field(@user, :password_confirmation) do
+        = f.password_field :password_confirmation, { class: 'form-control', required: true, placeholeder: 'Retype Password' }
+        span.glyphicon.glyphicon-log-in.form-control-feedback
+      .row
+        .col-xs-8
+          = link_to('I already have a membership', new_session_path, class: "text-center")
+        .col-xs-4
+          = f.submit 'Register', class: 'btn btn-primary btn-block btn-flat'  
+

@@ -1,0 +1,97 @@
+doctype html
+/!
+  | This is a starter template page. Use this page to start your new project from
+  | scratch. This page gets rid of all links and provides the needed markup only.
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta charset="utf-8" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible" /
+    title TaskMgr
+    = growlyflash_static_notices
+    = csrf_meta_tags
+    = action_cable_meta_tag
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    /! Tell the browser to be responsive to screen width
+    meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" /
+    /! HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    /! WARNING: Respond.js doesn't work if you view the page via file://
+    /![if lt IE 9]
+      | <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script
+      | <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script
+  body.hold-transition.skin-blue.sidebar-mini
+    .wrapper
+      /! Main Header
+      header.main-header
+        /! Logo
+        a.logo href="/" 
+          /! mini logo for sidebar mini 50x50 pixels
+          span.logo-mini
+            b> M
+            | enu
+          /! logo for regular state and mobile devices
+          span.logo-lg
+            b TaskMgr App
+        /! Header Navbar
+        nav.navbar.navbar-static-top role="navigation" 
+          /! Sidebar toggle button
+          - if signed_in?
+            a.sidebar-toggle data-toggle="offcanvas" href="#" role="button" 
+              span.sr-only Toggle navigation
+            .collapse.navbar-collapse.pull-left
+              ul.nav.navbar-nav
+                -if policy(User).index?
+                  li
+                    = link_to('Users', users_path)
+                -if policy(Task).index?    
+                  li  
+                    = link_to('Tasks', tasks_path)
+          .navbar-custom-menu
+            ul.nav.navbar-nav
+              - if signed_in? 
+                /! User Account Menu
+                li.dropdown.user.user-menu
+                  /! Menu Toggle Button
+                  a.dropdown-toggle data-toggle="dropdown" href="#" 
+                    /! The user image in the navbar
+                    = image_tag("img/user2-160x160.jpg", :class => "user-image", :alt =>"User Image")
+                    /! hidden-xs hides the username on small devices so only the image appears.
+                    span.hidden-xs = current_user&.email
+                  ul.dropdown-menu
+                    /! The user image in the menu
+                    li.user-header
+                      = image_tag("img/user2-160x160.jpg", :class => "img-circle", :alt =>"User Image")
+                      p
+                        = current_user&.email
+                        small 
+                          = "Member since #{current_user&.created_at&.to_date}"
+                    li.user-footer
+                      .pull-left
+                        = link_to('Profile', user_path(current_user.id), :class =>  "btn btn-default btn-flat", id: 'your_profile')
+                      .pull-right
+                        = link_to('Sign Out', session_path(current_user.id), :class =>  "btn btn-default btn-flat", :method => :delete, id: 'sign-out_link')
+              - else
+                li.user.user-menu
+                  = link_to('Sign In', new_session_path, id: 'sign-in_link')      
+      -if signed_in?
+         -if content_for?(:sidebar)
+            = yield :sidebar
+     
+      /! Content Wrapper. Contains page content
+      .content-wrapper  
+        .overlay-loader
+          .loader
+            div
+            div
+            div
+            div
+            div
+            div
+            div
+        ol.breadcrumb
+          = render_breadcrumbs :tag => :li   
+        = yield
+        /! /.content
+      /! /.content-wrapper
+

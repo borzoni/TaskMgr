@@ -1,0 +1,11 @@
+.box-body
+  .col-md-6.col-md-offset-3
+    = simple_form_for @user do |f|
+      = f.input :email, required: true
+      = f.input :password, required: true
+      = f.input :password_confirmation
+      .row
+        .col-xs-8
+        .col-xs-4
+          = f.button :submit, class:  'btn btn-primary btn-block btn-flat pull-right'  
+      

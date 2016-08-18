@@ -1,0 +1,12 @@
+.row
+  .col-xs-offset-2.col-xs-8
+    section.content
+      .box.box-primary  
+        .box-header.with-border
+          h3.box-title
+            = @task.name
+          - if policy(@task).create? 
+            = link_to content_tag(:span, nil, {class: 'glyphicon glyphicon-plus' }), new_task_path, {class: 'btn btn-primary pull-right' }
+          - if policy(@task).index?  
+            = link_to content_tag(:span, nil, { class: 'glyphicon glyphicon-arrow-left' }), profile_tasks_path, { class: 'btn btn-primary pull-right' }
+        = render "form"

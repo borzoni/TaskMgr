@@ -1,5 +1,4 @@
 class CreateUsers < ActiveRecord::Migration
-
   def change
     create_table :users do |t|
       t.string :email
@@ -11,5 +10,4 @@ class CreateUsers < ActiveRecord::Migration
 
     add_index :users, :email, unique: true
   end
-
 end
