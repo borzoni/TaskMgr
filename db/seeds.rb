@@ -10,5 +10,5 @@ unless User.exists?(email: 'test@admin.ru')
   User.create( role: :admin, activation: :activated,  email: 'test@admin.ru', password: 'longpass', password_confirmation: 'longpass')
 end
 unless User.exists?(email: 'test@user.ru')
-  User.create(role: 'user', activation_status: :activated, email: 'test@user.ru', password: 'longpass', password_confirmation: 'longpass')
+  User.create(role: 'user', activation: :activated, email: 'test@user.ru', password: 'longpass', password_confirmation: 'longpass')
 end
