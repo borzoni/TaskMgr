@@ -59,7 +59,6 @@ Rails.application.configure do
     password:             ENV['SMTP_PASSWORD'],
     authentication:        :plain
   }
-    
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: 'http://enigmatic-mountain-84656.herokuapp.com', port: '3000' }
 
