@@ -8,3 +8,5 @@ before_script:
   - sleep 3
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
+script:
+  - CODECLIMATE_REPO_TOKEN=d98cffcf0125298894b198698d16c6c5f35b2f9c352f763ea4db60f27995f767  bundle exec rspec

@@ -21,6 +21,9 @@ SimpleCov.start 'rails' do
   add_filter 'app/channels'
 end
 
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
+
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

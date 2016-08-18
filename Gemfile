@@ -73,6 +73,7 @@ group :test do
   gem 'test-unit'
   gem 'rails-controller-testing'
   gem 'simplecov', require: false
+  gem "codeclimate-test-reporter", group: :test, require: nil
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
