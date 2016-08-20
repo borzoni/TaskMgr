@@ -96,6 +96,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    connection_pool (2.2.0)
     data-confirm-modal (1.2.0)
       railties (>= 3.0)
     database_cleaner (1.5.3)
@@ -195,6 +196,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    redis (3.3.1)
     rspec-core (3.5.2)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -227,6 +229,10 @@ GEM
     shoulda (2.11.3)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    sidekiq (4.1.2)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -319,6 +325,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   shoulda
   shoulda-matchers
+  sidekiq
   simple_form
   simplecov
   slim-rails
