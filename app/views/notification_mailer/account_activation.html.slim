@@ -7,5 +7,5 @@ p
 p  
   | Use the following link to activate your account :
 div
-  = link_to "Activate", edit_account_activation_url(id: @user.activation_token.secret_id, secret: @user.activation_token.secret, email: @user.email), id: "activation_link"
+  = link_to "Activate", edit_account_activation_url(id: @secret_id, secret: @secret, email: @email), id: "activation_link"
 

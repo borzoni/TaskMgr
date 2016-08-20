@@ -45,11 +45,11 @@ module Authenticatable
   end
 
   def send_activation_mail
-    NotificationMailer.account_activation(self).deliver_later
+    NotificationMailer.account_activation(self.email, self.activation_token.secret, self.activation_token.secret_id).deliver_later
   end
 
   def send_password_recovery_mail
     return false unless forgot_token
-    NotificationMailer.password_recovery(self).deliver_later
+    NotificationMailer.password_recovery(self.email, self.forgot_token.secret, self.forgot_token.secret_id).deliver_later
   end
 end
