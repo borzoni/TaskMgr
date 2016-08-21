@@ -39,7 +39,7 @@ class Web::UsersController < Web::ApplicationController
     authorize @user
     if @user.update_attributes(user_params)
       flash[:success] = 'Profile updated'
-      redirect_to(current_user == @user ? @user : users_path)
+      redirect_to(current_user == @user ?  user_url(@user) : users_path)
     else
       render 'edit'
     end
