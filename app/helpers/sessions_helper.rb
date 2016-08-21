@@ -70,10 +70,9 @@ module SessionsHelper
     return nil if !secret || !rtoken_id
     token = AuthToken.find_authenticated(secret: secret, secret_id: rtoken_id)
     user = token&.authenticatable
-    forget(user) && return if user && user.remember_token_expired?
-    if user
-      sign_in(user)
-      @current_user = user
-    end
+    return unless user
+    (forget(user) && return) if user.remember_token_expired?
+    sign_in(user)
+    @current_user = user
   end
 end

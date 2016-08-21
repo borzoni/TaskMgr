@@ -56,36 +56,28 @@ class Web::TasksController < Web::ApplicationController
   end
 
   def start
-    authorize @task
-    @task.start!
-    flash[:success] = "Task #{@task.name} started!"
-    respond_to do |f|
-      f.html { redirect_to tasks_url }
-      f.js { render 'task' }
-    end
+    process_task_transition('started') { @task.start! }
   end
 
   def finish
-    authorize @task
-    @task.finish!
-    flash[:success] = "Task #{@task.name} finished!"
-    respond_to do |f|
-      f.html { redirect_to tasks_url }
-      f.js { render 'task' }
-    end
+    process_task_transition('finished') { @task.finish! }
   end
 
   def reopen
+    process_task_transition('reopened') { @task.reopen! }
+  end
+
+  private
+
+  def process_task_transition(transitioned)
     authorize @task
-    @task.reopen!
-    flash[:success] = "Task #{@task.name} reopened!"
+    yield if block_given?
+    flash[:success] = "Task #{@task.name} '#{transitioned}!"
     respond_to do |f|
       f.html { redirect_to tasks_url }
       f.js { render 'task' }
     end
   end
-
-  private
 
   def load_task
     @task = Task.find(params[:id])
