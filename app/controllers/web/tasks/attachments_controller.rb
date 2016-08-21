@@ -8,8 +8,9 @@ class Web::Tasks::AttachmentsController < Web::Tasks::ApplicationController
     authorize @attachment
     if @attachment.image?
       type = params[:img_version]
-      img_path = @attachment.attach_file.versions[type.to_sym].path if type
-      send_data File.open(img_path, 'rb').read, type: @attachment.attach_file.file.content_type, disposition: 'inline'
+      base = @attachment.attach_file
+      base = base.versions[type.to_sym] if type
+      send_data File.open(base.path, 'rb').read, type: @attachment.attach_file.file.content_type, disposition: 'inline'
     else
       send_file @attachment.attach_file.path, type: @attachment.attach_file.file.content_type, filename: @attachment.attach_file.file.filename, stream: false
     end
