@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Web::SessionsController < Web::ApplicationController
   before_action :assert_not_auth, except: :destroy
   before_action :assert_auth, only: :destroy

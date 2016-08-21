@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddTokenTypeToAuthTokens < ActiveRecord::Migration[5.0]
   def up
     add_column 'auth_tokens', 'token_type', :integer, default: 0

@@ -1,7 +1,7 @@
+# frozen_string_literal: true
 require 'active_support/concern'
 
 module Authenticatable
-
   extend ActiveSupport::Concern
   included do
     # password stuff
@@ -45,11 +45,19 @@ module Authenticatable
   end
 
   def send_activation_mail
-    NotificationMailer.account_activation(self.email, self.activation_token.secret, self.activation_token.secret_id).deliver_later
+    mailer = NotificationMailer.account_activation(email, activation_token.secret, activation_token.secret_id)
+    send_mail_wrapper(mailer)
   end
 
   def send_password_recovery_mail
     return false unless forgot_token
-    NotificationMailer.password_recovery(self.email, self.forgot_token.secret, self.forgot_token.secret_id).deliver_later
+    mailer = NotificationMailer.password_recovery(email, forgot_token.secret, forgot_token.secret_id)
+    send_mail_wrapper(mailer)
+  end
+
+  private
+
+  def send_mail_wrapper(mailer)
+    Rails.env.test? ? mailer.deliver_now : mailer.deliver_later
   end
 end

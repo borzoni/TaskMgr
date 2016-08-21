@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class NotificationMailer < ApplicationMailer
   def account_activation(email, secret, secret_id)
     @secret = secret

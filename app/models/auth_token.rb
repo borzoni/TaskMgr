@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'securerandom'
 # For longtermed tokens
 class AuthToken < ApplicationRecord

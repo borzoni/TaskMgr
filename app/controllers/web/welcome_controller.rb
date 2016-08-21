@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Web::WelcomeController < Web::ApplicationController
   before_action :assert_not_auth
   def index

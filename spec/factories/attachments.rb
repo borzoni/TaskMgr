@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :attachment do
     attach_file { File.new(File.join(Rails.root, 'spec', 'support_files', 'test_attachments', 'test.pdf')) }

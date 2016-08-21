@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Web::Tasks::ApplicationController < Web::ApplicationController
   before_action :assert_auth
   helper_method :resource_task

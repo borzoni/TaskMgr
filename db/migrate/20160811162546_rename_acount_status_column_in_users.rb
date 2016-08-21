@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class RenameAcountStatusColumnInUsers < ActiveRecord::Migration[5.0]
   def up
     rename_column :users, :acount_status, :activation

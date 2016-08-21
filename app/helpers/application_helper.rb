@@ -1,3 +1,4 @@
+# frozen_string_literal: false
 module ApplicationHelper
   def error_aware_field(object, field)
     capture do

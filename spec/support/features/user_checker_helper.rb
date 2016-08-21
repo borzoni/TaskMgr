@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 shared_examples_for 'user_form_common_checks' do |_|
   scenario 'user can not pass through with wrong email' do
     fill_user_form('test@mail.56', 'qwerty12345', 'qwerty12345', path)

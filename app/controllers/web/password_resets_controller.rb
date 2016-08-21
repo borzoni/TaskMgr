@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class Web::PasswordResetsController < Web::ApplicationController
-
   before_action :assert_not_auth
   before_action :load_user, only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
@@ -50,13 +50,12 @@ class Web::PasswordResetsController < Web::ApplicationController
     params.require(:user).permit(:password, :password_confirmation)
   end
 
-
   def load_user
     @user = User.find_by(email: params[:email])
   end
 
   def valid_user
-    unless (@user && @user.activated? && @user.forgot_token_verify({ secret_id: params[:id], secret: params[:secret] }))
+    unless @user && @user.activated? && @user.forgot_token_verify(secret_id: params[:id], secret: params[:secret])
       flash[:error] = 'Password reset can\'t be applied for you.'
       redirect_to root_url
     end
@@ -68,5 +67,4 @@ class Web::PasswordResetsController < Web::ApplicationController
       redirect_to new_password_reset_url
     end
   end
-
 end

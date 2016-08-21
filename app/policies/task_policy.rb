@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class TaskPolicy
   attr_reader :current_user, :model
 

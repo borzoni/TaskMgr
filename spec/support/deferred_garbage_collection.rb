@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class DeferredGarbageCollection
   DEFERRED_GC_THRESHOLD = (ENV['DEFER_GC'] || 15.0).to_f
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Features
   module AuthHelpers
     def sign_up(email, password, confirmation)

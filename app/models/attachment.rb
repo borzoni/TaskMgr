@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class Attachment < ApplicationRecord
-
   belongs_to :task, optional: true
   mount_uploader :attach_file, AttachmentUploader
   validates :attach_file, presence: true
@@ -7,5 +7,4 @@ class Attachment < ApplicationRecord
   def image?
     attach_file&.file&.content_type =~ %r{image\/.*}
   end
-
 end

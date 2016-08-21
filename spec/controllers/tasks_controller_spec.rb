@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe Web::TasksController do
@@ -136,7 +137,6 @@ describe Web::TasksController do
     end
   end
 
-
   context '#show, #edit' do
     let!(:user) { create(:user, :admin, :activated) }
     let!(:task) { create(:task) }
@@ -188,7 +188,6 @@ describe Web::TasksController do
       expect(task.reload.name).to be_eql('NewName')
     end
   end
-
 
   context '#destroy' do
     let!(:user) { create(:user, :admin, :activated) }

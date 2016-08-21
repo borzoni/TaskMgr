@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 module SessionsHelper
-
   def sign_in(user)
     session[:uid] = user.id
   end
@@ -67,10 +67,10 @@ module SessionsHelper
   def remember_token_process
     rtoken_id = cookies.signed[:rtoken_id]
     secret = cookies.signed[:rtoken_secret]
-    return nil if (!secret or !rtoken_id)
-    token = AuthToken.find_authenticated({ secret: secret, secret_id: rtoken_id })
+    return nil if !secret || !rtoken_id
+    token = AuthToken.find_authenticated(secret: secret, secret_id: rtoken_id)
     user = token&.authenticatable
-    forget(user) and return if (user and user.remember_token_expired?)
+    forget(user) && return if user && user.remember_token_expired?
     if user
       sign_in(user)
       @current_user = user

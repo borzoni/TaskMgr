@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 require 'carrierwave/processing/mini_magick'
 class AttachmentUploader < CarrierWave::Uploader::Base
-
   include CarrierWave::MiniMagick
 
   IMAGE_EXTENSIONS = %w(jpg jpeg gif png).freeze
@@ -35,5 +35,4 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   def image?(new_file)
     new_file&.content_type =~ %r{image\/.*}
   end
-
 end

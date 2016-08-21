@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class AttachmentPolicy
-
   attr_reader :current_user, :model
 
   def initialize(current_user, model)
@@ -8,7 +8,6 @@ class AttachmentPolicy
   end
 
   def show?
-    @current_user.admin? or @current_user == @attach.task&.user
+    @current_user.admin? || @current_user == @attach.task&.user
   end
-
 end

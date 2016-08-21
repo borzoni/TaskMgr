@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class Web::Profile::ApplicationController < Web::ApplicationController
-
   before_action :assert_auth
   helper_method :profile_user
 
@@ -16,5 +16,4 @@ class Web::Profile::ApplicationController < Web::ApplicationController
                  profile_user.tasks.preload(:user)
                end
   end
-
 end

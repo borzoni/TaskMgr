@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Features
   module CommonHelpers
     def expect_flash_with(msg)

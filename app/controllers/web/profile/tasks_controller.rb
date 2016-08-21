@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Web::Profile::TasksController < Web::Profile::ApplicationController
   before_action :load_users
 

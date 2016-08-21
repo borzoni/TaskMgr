@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Web::RegistrationsController < Web::ApplicationController
   before_action :assert_not_auth
 

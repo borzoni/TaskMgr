@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Web::UsersController < Web::ApplicationController
   before_action :assert_auth
   after_action :verify_authorized

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 shared_examples_for 'is_authenticatable' do
   let(:resource) { create(described_class.name.underscore) }
   subject { resource }

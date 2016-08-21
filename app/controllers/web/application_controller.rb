@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Web::ApplicationController < ApplicationController
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
