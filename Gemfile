@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'growlyflash', git: 'git://github.com/borzoni/growlyflash.git', branch: 'master'
+gem 'growlyflash', git: 'https://github.com/borzoni/growlyflash.git', branch: 'master'
 gem 'data-confirm-modal'
 gem 'nested_form_fields'
 gem 'mini_magick'
@@ -45,7 +45,7 @@ gem 'font-awesome-rails'
 gem 'aasm'
 gem 'email_validator'
 gem 'rails-i18n', '~> 5.0.0'
-gem 'breadcrumbs_on_rails', git: 'git://github.com/weppos/breadcrumbs_on_rails.git', branch: 'master' # Change this when bug is fixed
+gem 'breadcrumbs_on_rails', git: 'https://github.com/weppos/breadcrumbs_on_rails.git', branch: 'master' # Change this when bug is fixed
 gem 'factory_girl_rails'
 gem 'faker'
 gem 'sidekiq'

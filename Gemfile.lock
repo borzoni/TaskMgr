@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/borzoni/growlyflash.git
+  remote: https://github.com/borzoni/growlyflash.git
   revision: 9b125814d168ec3c6005b404214203a1ecc4579e
   branch: master
   specs:
@@ -8,7 +8,7 @@ GIT
       railties (>= 3.2, < 5.1)
 
 GIT
-  remote: git://github.com/weppos/breadcrumbs_on_rails.git
+  remote: https://github.com/weppos/breadcrumbs_on_rails.git
   revision: 8d3ef09135d6673788c477120702076cd28670ab
   branch: master
   specs:
